@@ -1,13 +1,15 @@
-# Stacked: Mini Game
+# Overstack: Mini Tile Matching Game
 
 A browser-based tile-matching puzzle game where you strategically clear tiles by matching three of a kind in your tray. Navigate through multiple levels with increasing difficulty, using limited tools to overcome challenging board layouts.
 
-![Stacked Game](https://img.shields.io/badge/Status-Playable-brightgreen)
+This game is built entirely through agentic AI development with human-in-the-loop iteration.
+
+![Overstack Game](https://img.shields.io/badge/Status-Playable-brightgreen)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
 
 ## 🎮 Overview
 
-**Stacked** is a tile-matching puzzle game inspired by modern match-3 mechanics. The goal is simple: clear all tiles from the board by strategically moving them into your tray. When three matching tiles are in the tray simultaneously, they automatically disappear. The challenge lies in managing your limited tray space (7 tiles) while dealing with layered tiles that can block each other.
+**Overstack** is a tile-matching puzzle game inspired by modern match-3 mechanics. The goal is simple: clear all tiles from the board by strategically moving them into your tray. When three matching tiles are in the tray simultaneously, they automatically disappear. The challenge lies in managing your limited tray space (7 tiles) while dealing with layered tiles that can block each other.
 
 ## ✨ Features
 
@@ -245,5 +247,5 @@ Potential improvements and features:
 
 ---
 
-**Enjoy playing Stacked!** 🎮
+**Enjoy playing Overstack!** 🎮
 

@@ -24,9 +24,9 @@ body {
 }
 
 .game-title {
-    font-size: 42px;
+    font-size: 40px;
     font-weight: 700;
-    font-style: italic;
+    font-style: normal;
     color: #5a6b52;
     margin-bottom: 10px;
     text-align: center;

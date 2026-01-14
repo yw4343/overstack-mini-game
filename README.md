@@ -4,6 +4,8 @@ A browser-based tile-matching puzzle game where you strategically clear tiles by
 
 This game is built entirely through agentic AI development with human-in-the-loop iteration.
 
+**Live demo**: https://overstack.netlify.app
+
 ![Overstack Game](https://img.shields.io/badge/Status-Playable-brightgreen)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
 

@@ -7,11 +7,11 @@ This game is built entirely through agentic AI development with human-in-the-loo
 ![Overstack Game](https://img.shields.io/badge/Status-Playable-brightgreen)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
 
-## 🎮 Overview
+## Overview
 
 **Overstack** is a tile-matching puzzle game inspired by modern match-3 mechanics. The goal is simple: clear all tiles from the board by strategically moving them into your tray. When three matching tiles are in the tray simultaneously, they automatically disappear. The challenge lies in managing your limited tray space (7 tiles) while dealing with layered tiles that can block each other.
 
-## ✨ Features
+## Features
 
 - **Multiple Levels**: Progress through increasingly challenging levels with unique board layouts
 - **Layered Tiles**: Tiles can stack on top of each other, creating strategic depth
@@ -21,7 +21,7 @@ This game is built entirely through agentic AI development with human-in-the-loo
 - **Clean UI**: Modern, responsive design with intuitive controls
 - **No Dependencies**: Pure vanilla JavaScript, HTML, and CSS
 
-## 🎯 How to Play
+## How to Play
 
 ### Basic Rules
 
@@ -48,7 +48,7 @@ Each tool can only be used **once per game**:
 
 **Tip**: Use tools strategically when you're stuck or close to filling your tray!
 
-## 🚀 Setup & Installation
+## Setup & Installation
 
 ### Prerequisites
 
@@ -80,7 +80,7 @@ Each tool can only be used **once per game**:
 
 3. **Start playing**: Click the "New Game" button to begin!
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 stacked/
@@ -98,7 +98,7 @@ stacked/
 - **`game.js`**: Implements game state management, level building, tile interactions, tool mechanics, and win/lose conditions
 - **`solver.js`**: Independent solvability checker using beam search algorithm to verify that levels are winnable
 
-## 🏗️ Technical Architecture
+## Technical Architecture
 
 ### Game State
 
@@ -142,7 +142,7 @@ When a tile is added to the tray, the game automatically:
 3. Repeats until no more triples exist
 4. Updates the visual tray display
 
-## 🔬 Solver Architecture
+## Solver Architecture
 
 The `solver.js` file implements a **beam search algorithm** to verify level solvability:
 
@@ -179,7 +179,7 @@ if (result.solvable) {
 }
 ```
 
-## 🎨 Level Design
+## Level Design
 
 Levels are built using functions like `buildLevel1()`, `buildLevel2()`, `buildLevel3()` that define:
 
@@ -194,7 +194,7 @@ Each level uses a unique layout pattern, with higher levels featuring:
 - More complex blocking relationships
 - Larger variety of icons
 
-## 🛠️ Development
+## Development
 
 ### Making Changes
 
@@ -223,7 +223,7 @@ Since this is a pure JavaScript project with no build step:
 - **Tile Size**: Adjust `TILE_SIZE` and related constants
 - **Styling**: Edit `style.css` for visual customization
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Feel free to:
 - Report bugs
@@ -232,7 +232,7 @@ Contributions are welcome! Feel free to:
 - Add new levels
 - Improve the solver algorithm
 
-## 🎯 Future Enhancements
+## Future Enhancements
 
 Potential improvements and features:
 
@@ -240,12 +240,9 @@ Potential improvements and features:
 - [ ] Additional tool types (swap, peek, etc.)
 - [ ] Animations and sound effects
 - [ ] Hint system using solver
-- [ ] High score tracking
-- [ ] Mobile touch optimization
-- [ ] Accessibility improvements
-- [ ] Multiplayer or competitive modes
+- [ ] Scoreboard
 
 ---
 
-**Enjoy playing Overstack!** 🎮
+**Enjoy playing Overstack!** 
 

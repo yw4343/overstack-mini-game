@@ -287,6 +287,11 @@ body {
     filter: brightness(0.75);
 }
 
+.tile.touch-active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
 .tray {
     display: flex;
     gap: 12px;
@@ -837,6 +842,11 @@ body {
 
     .tile:active:not(.blocked) {
         transform: translateY(-1px) scale(0.98);
+    }
+    
+    .tile.touch-active:not(.blocked) {
+        transform: scale(0.95);
+        transition: transform 0.1s ease;
     }
 
     .new-game-btn:active,

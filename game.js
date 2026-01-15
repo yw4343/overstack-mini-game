@@ -1545,7 +1545,7 @@ function handleTileClick(tileId) {
     });
     
     // Hide tile element (it's now in tray)
-    tileEl.style.transition = 'opacity 0.05s ease';
+    tileEl.style.transition = 'opacity 0.1s ease';
     tileEl.style.opacity = '0';
     setTimeout(() => {
         tileEl.style.display = 'none';
@@ -1553,7 +1553,7 @@ function handleTileClick(tileId) {
         checkWinCondition();
         updateToolButtonStates();
         updateDebugWindow();
-    }, 50);
+    }, 100);
 }
 
 // Add tile to tray
@@ -1801,7 +1801,56 @@ function renderAllTiles() {
         
         tileEl.style.zIndex = tile.z;
         tileEl.dataset.tileId = tile.id;
-        tileEl.addEventListener('click', () => handleTileClick(tile.id));
+        
+        // Use touchstart for immediate mobile response, click as fallback
+        let tileClicked = false;
+        
+        // Add visual feedback on touch
+        const handleTouchStart = (e) => {
+            if (tileClicked || tileEl.classList.contains('blocked')) return;
+            tileEl.classList.add('touch-active');
+            
+            // Haptic feedback (if available)
+            if (navigator.vibrate) {
+                navigator.vibrate(20); // Short vibration for tactile feedback
+            }
+        };
+        
+        const handleTouchEnd = (e) => {
+            tileEl.classList.remove('touch-active');
+        };
+        
+        const handleTileInteraction = (e) => {
+            if (tileClicked) return; // Prevent double-firing
+            tileClicked = true;
+            
+            // For touch events, prevent default to avoid double-tap zoom
+            if (e.type === 'touchstart') {
+                e.preventDefault();
+                
+                // Keep visual feedback briefly, then remove and trigger click
+                setTimeout(() => {
+                    tileEl.classList.remove('touch-active');
+                    handleTileClick(tile.id);
+                }, 50); // Small delay to show visual feedback
+            } else {
+                // For mouse clicks, no delay needed
+                tileEl.classList.remove('touch-active');
+                handleTileClick(tile.id);
+            }
+            
+            // Reset flag after a short delay
+            setTimeout(() => {
+                tileClicked = false;
+            }, 300);
+        };
+        
+        tileEl.addEventListener('touchstart', handleTouchStart, { passive: true });
+        tileEl.addEventListener('touchend', handleTouchEnd, { passive: true });
+        tileEl.addEventListener('touchcancel', handleTouchEnd, { passive: true });
+        tileEl.addEventListener('touchstart', handleTileInteraction, { passive: false });
+        tileEl.addEventListener('click', handleTileInteraction);
+        
         tile.element = tileEl;
         gameBoard.appendChild(tileEl);
     });
@@ -1914,6 +1963,11 @@ window.addEventListener('resize', () => {
 // Prevent double-tap zoom on mobile
 let lastTouchEnd = 0;
 document.addEventListener('touchend', (event) => {
+    // Don't prevent default on tiles - let them handle their own events
+    if (event.target.closest('.tile')) {
+        return;
+    }
+    
     const now = Date.now();
     if (now - lastTouchEnd <= 300) {
         event.preventDefault();

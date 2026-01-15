@@ -273,6 +273,7 @@ body {
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 2px 4px rgba(90, 107, 82, 0.15);
+    touch-action: manipulation;
 }
 
 .tile:hover:not(.blocked) {
@@ -831,6 +832,7 @@ body {
     .tile {
         cursor: pointer;
         -webkit-tap-highlight-color: rgba(90, 107, 82, 0.2);
+        touch-action: manipulation;
     }
 
     .tile:active:not(.blocked) {

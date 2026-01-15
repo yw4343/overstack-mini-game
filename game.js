@@ -82,7 +82,7 @@ function initGame(resetLevel = true) {
     removeDebugWindow(); // Always remove debug window
     
     // Create skip button for testing
-    // createSkipButton(); // Skip button hidden
+    createSkipButton();
     
     // Build level
     if (currentLevel === 1) {
@@ -549,13 +549,13 @@ function buildLevel2Slots() {
     }
     
     // Position substacks relative to top layer center, maintaining current distances
-    // Current positions relative to center: SUB_LEFT at -1, SUB_RIGHT at 7, SUB_LEFT_SIDE at -1.5
-    // SUB_RIGHT_SIDE positioned at x=7.5 (0.5 tile further from grid)
+    // Current positions relative to center: SUB_LEFT at -1, SUB_RIGHT at 7, SUB_LEFT_SIDE at -1.0
+    // SUB_RIGHT_SIDE positioned at x=7.0 (right next to grid)
     // Calculate distances from center to maintain them
     const subLeftDistance = -1 - topLayerCenterX;      // Distance from center to SUB_LEFT
     const subRightDistance = 7 - topLayerCenterX;      // Distance from center to SUB_RIGHT
-    const subLeftSideDistance = -1.5 - topLayerCenterX; // Distance from center to SUB_LEFT_SIDE (0.5 tile further from grid)
-    // SUB_RIGHT_SIDE will be positioned at x=7.5 (0.5 tile further from grid)
+    const subLeftSideDistance = -1.0 - topLayerCenterX; // Distance from center to SUB_LEFT_SIDE (right next to grid)
+    // SUB_RIGHT_SIDE will be positioned at x=7.0 (right next to grid)
     
     // SUB_LEFT (bottom): positioned relative to top layer center, moved a bit lower
     // Main grid goes from y=0 to y=6, place at y=7.5 (slightly lower)
@@ -593,12 +593,12 @@ function buildLevel2Slots() {
         });
     }
     
-    // SUB_RIGHT_SIDE (right of MAIN): positioned at x=7.5 (0.5 tile further from grid)
-    // Main grid ends at x=6, so x=7.5 places it 0.5 tile further from the grid
+    // SUB_RIGHT_SIDE (right of MAIN): positioned at x=7.0 (right next to grid)
+    // Main grid ends at x=6, so x=7.0 places it right next to the grid
     for (let z = 0; z <= 11; z++) {
         slots.push({
             slotId: `sub_right_side_${z}`,
-            x: 7.5,
+            x: 7.0,
             y: mainCenterY,
             z: z,
             region: 'SUB_RIGHT_SIDE'
@@ -1086,7 +1086,7 @@ function buildLevel3Slots() {
     // Position substacks relative to top layer center, maintaining same positions as Level 2
     const subLeftDistance = -1 - topLayerCenterX;
     const subRightDistance = 7 - topLayerCenterX;
-    const subLeftSideDistance = -1.5 - topLayerCenterX; // 0.5 tile further from grid
+    const subLeftSideDistance = -1.0 - topLayerCenterX; // right next to grid
     const mainCenterY = 3;
     
     // SUB_LEFT (bottom): 16 tiles (z=0..15)
@@ -1123,11 +1123,11 @@ function buildLevel3Slots() {
     }
     
     // SUB_RIGHT_SIDE (right of MAIN): 16 tiles (z=0..15)
-    // Positioned at x=7.5 (0.5 tile further from grid)
+    // Positioned at x=7.0 (right next to grid)
     for (let z = 0; z <= 15; z++) {
         slots.push({
             slotId: `sub_right_side_${z}`,
-            x: 7.5,
+            x: 7.0,
             y: mainCenterY,
             z: z,
             region: 'SUB_RIGHT_SIDE'
@@ -1894,5 +1894,31 @@ newGameBtn.addEventListener('click', () => {
 window.addEventListener('load', () => {
     initGame();
 });
+
+// Handle window resize and orientation changes for mobile
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    // Only handle resize on mobile devices (viewport <= 768px)
+    if (window.innerWidth > 768) return;
+    
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        // Re-render tiles to ensure proper positioning after resize
+        if (tiles.length > 0) {
+            renderAllTiles();
+            updateBlocking();
+        }
+    }, 250);
+});
+
+// Prevent double-tap zoom on mobile
+let lastTouchEnd = 0;
+document.addEventListener('touchend', (event) => {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
+    lastTouchEnd = now;
+}, false);
 
 

@@ -1545,7 +1545,7 @@ function handleTileClick(tileId) {
     });
     
     // Hide tile element (it's now in tray)
-    tileEl.style.transition = 'opacity 0.1s ease';
+    tileEl.style.transition = 'opacity 0.05s ease';
     tileEl.style.opacity = '0';
     setTimeout(() => {
         tileEl.style.display = 'none';
@@ -1553,7 +1553,7 @@ function handleTileClick(tileId) {
         checkWinCondition();
         updateToolButtonStates();
         updateDebugWindow();
-    }, 100);
+    }, 50);
 }
 
 // Add tile to tray
